@@ -1,0 +1,71 @@
+---
+title: 'Evolution of front-end frameworks'
+description: 'What you missed in the last 10 years'
+pubDate: 'March 05 2024'
+heroImage: '../../assets/images/placeholder-about.jpg'
+category: 'Tech'
+tags: ['JavaScript', 'React', 'Next', 'Astro']
+---
+
+You learned React 1-8 years ago in a coding bootcamp and you’ve been happily employed ever since. You’ve never felt any pressure to investigate the latest new frontend frameworks since React has only grown more popular and your job prospects have remained good.
+
+Wait, should you be worried?
+
+No. Well, maybe about AI (link), but not about React. React is doing fine.
+
+However, there’s a lot of cool new perspectives and players that have emerged. I believe knowing about these can really grow your perspective as a developer even if you keep working with React, plus it will give you superior alternatives for specific projects.
+
+## If you would like a summary of the last 10 years, I’ve got you covered, read on.
+
+### Revisiting the SPA revolution
+
+Let's start at the pre-SPA world. A typical framework such as Ruby on Rails would work as follows:
+
+Every client request would reach an endpoint in your server, and your server would build and return a full html page.
+When your user interacted with this html page, it might result in a navigation to a different page, or the same page with different params, or maybe a post or put request. Either way, this would hit another endpoint in your server and your server might do some work such as updating your database, ir might fetch some new resources or filter them in a different way… but ultimately it would return a new html page to your user.
+With each request, the html page your server returned might include a `<script>` tag. This would load any Javascript needed to add some interactivity to your page.
+
+Then came SPAs (Single Page Applications). The big revolution was that we no longer needed a full html page to be created on each request. In fact, we didn’t even need the first html page to be created on the first request. All we needed was a placeholder html page and a lot of Javascript.
+
+Out of a single `<app-root>` element, our Javascript could build an entire page, and then modify the page on each interaction. Even when our user navigated to a different page within our web app, our Javascript could just change the DOM to the new page’s contents, without the need for any new html. If some new data was necessary, our Javascript would make a request to the server, but we’d only be making an Ajax request and getting data back, for example JSON. Our server only needed to be a pure API with no knowledge of html.
+What did we actually gain?
+
+When I first learned about SPAs, because of the name (“Single Page”), I focused on routing. But looking back, what were really the big gains?
+
+Amazing interactivity (reactivity)
+Component and state-based UIs.
+
+### Problems in paradise
+
+This all sounds very cool, but the major downside of this paradigm is we’ve been sending and executing such a crazy amount of Javascript to users that many people in the world might experience 10 seconds to load your amazing SPA in their mobile device.
+
+### SSR + hydration to the rescue
+
+The amazing interactivity we mentioned doesn't need to mean when changing pages. Just within a single page, the reactivity of modern frameworks is amazing.
+So how about this: when a new page is opened, lets first have a server create it as an html page. Then we can send this to the user really fast, and only later load the full Javascript framework.
+New problem: uncanny valley.
+
+### Other improvements in the big frameworks
+
+Wait, we can also just improve a lot linearly from the status quo, eg the Dom-diffing (React) or dirty-checking (Angular).
+Improving load times and change detection performance through compilation to Vanilla JS (Svelte, Angular Ivy), push-based change detection (Vue, Angular signals), “resumability” (Qwik)...
+
+### The other extreme: SSGs (Static Site Generators)
+
+Lets still use the amazing benefits of state-based, component-based architectures!
+However, if we’re building something that is content-based, let's just pre-compile it in advance and end up with pure html again.
+
+### Jamstack
+
+Hey, it turns out that we can precompile more than you might think! Even if we need to make some API calls, or pull some content from a Headless CMS, as long as we don’t need something highly personalised, we can probably do it at build time!
+Eg. Gatsby.
+
+### Islands architecture
+
+Astro: Html as default with Islands of whatever you want, even for example React.
+React server components
+
+### Current state-of-the-art
+
+NextJS: Works fluidly as SSR or SSG depending on your needs, implements RSCs, choice of who/when has rendering responsibility.
+Astro: Build with whatever you want but compiles to html as default, add Islands of whatever framework you want.
